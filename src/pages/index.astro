@@ -1,0 +1,256 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import TopHeader from '../components/TopHeader.astro';
+import BottomNav from '../components/BottomNav.astro';
+import QuoteCalculator from '../components/QuoteCalculator';
+import ReviewsSection from '../components/ReviewsSection';
+import GallerySectionClient from '../components/GallerySectionClient';
+import ServiceAreaMap from '../components/ServiceAreaMap';
+
+// Import hero image for optimization
+import heroImage from '../assets/images/hero-clean-car.jpg';
+---
+
+<Layout title="Showers Auto Detailing - Professional Mobile Car Detailing">
+  <TopHeader />
+
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative h-[600px] md:h-[700px] overflow-hidden">
+      <!-- Background Image - Optimized with Astro Image -->
+      <div class="absolute inset-0">
+        <Image
+          src={heroImage}
+          alt="Professional auto detailing showcase"
+          class="w-full h-full object-cover"
+          widths={[640, 960, 1280, 1920]}
+          sizes="100vw"
+          format="webp"
+          quality={80}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 gradient-overlay"></div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="relative container mx-auto px-4 h-full flex items-center">
+        <div class="max-w-2xl text-white hero-text-shadow">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 text-balance">
+            Your Car Deserves The Best
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-white/90">
+            Professional mobile detailing that comes to you. Premium service, unbeatable results.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#book"
+              class="px-8 py-4 bg-[#EB6C1D] hover:bg-[#D35E14] rounded-full font-semibold text-lg text-center transition-colors"
+            >
+              Book Now
+            </a>
+            <a
+              href="#quote"
+              class="px-8 py-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full font-semibold text-lg text-center transition-colors"
+            >
+              Get Quote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[#FDE8D9] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[#EB6C1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">We Come To You</h3>
+            <p class="text-gray-600">Mobile service at your home or office</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[#FDE8D9] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[#EB6C1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Expert Detailers</h3>
+            <p class="text-gray-600">Certified professionals with years of experience</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[#FDE8D9] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[#EB6C1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Premium Products</h3>
+            <p class="text-gray-600">Only the best eco-friendly products</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Calculator Section -->
+    <section id="quote" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto">
+          <QuoteCalculator client:load />
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            See The Difference
+          </h2>
+          <p class="text-xl text-gray-600">
+            Drag the slider to reveal our transformations
+          </p>
+        </div>
+        <GallerySectionClient client:load />
+      </div>
+    </section>
+
+    <!-- Service Area Section -->
+    <section id="service-area" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <ServiceAreaMap client:load />
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            What Our Customers Say
+          </h2>
+          <p class="text-xl text-gray-600">
+            Real reviews from satisfied customers
+          </p>
+        </div>
+        <ReviewsSection client:load />
+
+        <!-- Yelp CTA -->
+        <div class="mt-12 text-center">
+          <a
+            href="https://www.yelp.com/biz/showers-auto-detailing-victorville"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-[#FF1A1A] hover:bg-[#E60000] text-white rounded-full font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+          >
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.14 9.27c1.67.13 2.67-.33 3-1.4.33-1.07-.23-2.17-1.67-3.3L10 1.7c-.5-.37-.9-.2-1.2.5l-1.93 5.67c-.27.8.13 1.27 1.2 1.4h4.07zm-.54 2.13c-.67.67-.67 1.47 0 2.4l2.93 4.47c.4.6.87.6 1.4 0l3.87-4.47c.67-.73.47-1.33-.6-1.8l-5.6-2.4c-.8-.33-1.33-.07-2 1.8zm-2.93 2.93c-.8-.27-1.33.07-1.6.93l-1.67 5.47c-.27.73.07 1.2.93 1.4l5.47 1.67c.87.2 1.27-.2 1.2-1.2l-.4-5.67c-.07-.93-.67-1.4-1.8-1.4l-2.13-.2zM3.07 12.4c-.4.6-.27 1.07.33 1.4l5.27 2.73c.8.4 1.33.13 1.6-.8l1.2-5.47c.2-.93-.2-1.4-1.2-1.4H4.8c-.93 0-1.47.47-1.73 1.4v2.14z"/>
+            </svg>
+            See More Reviews on Yelp
+          </a>
+          <p class="mt-4 text-gray-500 text-sm">
+            Check out what others are saying about our detailing services
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="book" class="py-16 gradient-primary text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Ready to Transform Your Vehicle?
+        </h2>
+        <p class="text-xl mb-8 text-orange-100">
+          Book your detailing service today and experience the difference
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="tel:+14422295998"
+            class="px-8 py-4 bg-white text-[#EB6C1D] rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors"
+          >
+            Call Now
+          </a>
+          <a
+            href="#quote"
+            class="px-8 py-4 bg-white/20 backdrop-blur-sm rounded-full font-semibold text-lg hover:bg-white/30 transition-colors"
+          >
+            Get Quote
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Showers Auto Detailing</h3>
+            <p class="text-gray-400">
+              Professional mobile car detailing service bringing premium quality to your location.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Contact</h4>
+            <div class="space-y-2 text-gray-400">
+              <p>Phone: <a href="tel:+14422295998" class="hover:text-white transition-colors">(442) 229-5998</a></p>
+              <p>Email: <a href="mailto:contact@showersauto.com" class="hover:text-white transition-colors">contact@showersauto.com</a></p>
+              <p>Hours: Mon-Sat 9AM-6PM</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Quick Links</h4>
+            <div class="space-y-2">
+              <a href="/services" class="block text-gray-400 hover:text-white transition-colors">Services & Pricing</a>
+              <a href="#gallery" class="block text-gray-400 hover:text-white transition-colors">Gallery</a>
+              <a href="#reviews" class="block text-gray-400 hover:text-white transition-colors">Reviews</a>
+              <a href="#quote" class="block text-gray-400 hover:text-white transition-colors">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social/External Links -->
+        <div class="border-t border-gray-800 mt-8 pt-8">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-gray-400">&copy; {new Date().getFullYear()} Showers Auto Detailing. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+              <a
+                href="https://www.yelp.com/biz/showers-auto-detailing-victorville"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-gray-400 hover:text-[#FF1A1A] transition-colors"
+                aria-label="Visit our Yelp page"
+              >
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.14 9.27c1.67.13 2.67-.33 3-1.4.33-1.07-.23-2.17-1.67-3.3L10 1.7c-.5-.37-.9-.2-1.2.5l-1.93 5.67c-.27.8.13 1.27 1.2 1.4h4.07zm-.54 2.13c-.67.67-.67 1.47 0 2.4l2.93 4.47c.4.6.87.6 1.4 0l3.87-4.47c.67-.73.47-1.33-.6-1.8l-5.6-2.4c-.8-.33-1.33-.07-2 1.8zm-2.93 2.93c-.8-.27-1.33.07-1.6.93l-1.67 5.47c-.27.73.07 1.2.93 1.4l5.47 1.67c.87.2 1.27-.2 1.2-1.2l-.4-5.67c-.07-.93-.67-1.4-1.8-1.4l-2.13-.2zM3.07 12.4c-.4.6-.27 1.07.33 1.4l5.27 2.73c.8.4 1.33.13 1.6-.8l1.2-5.47c.2-.93-.2-1.4-1.2-1.4H4.8c-.93 0-1.47.47-1.73 1.4v2.14z"/>
+                </svg>
+                <span class="text-sm font-medium">Find us on Yelp</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <BottomNav />
+</Layout>

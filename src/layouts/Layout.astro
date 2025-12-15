@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Professional mobile auto detailing service. Book online and get instant quotes for car detailing, interior cleaning, and more."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preconnect to external services -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <title>{title}</title>
+  </head>
+  <body class="antialiased">
+    <div class="app-shell">
+      <slot />
+    </div>
+  </body>
+</html>

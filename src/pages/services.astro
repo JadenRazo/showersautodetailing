@@ -1,0 +1,323 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TopHeader from '../components/TopHeader.astro';
+import BottomNav from '../components/BottomNav.astro';
+
+const services = [
+  {
+    name: 'Exterior Wash/Wax/Sealant',
+    description: 'Complete exterior hand wash with premium wax and sealant protection.',
+    features: ['Hand wash', 'Tire cleaning', 'Window cleaning', 'Premium wax application', 'Sealant protection'],
+    prices: { sedan: 50, suv: 60, commercial: 80 },
+    duration: '~1 hour'
+  },
+  {
+    name: 'Interior Detail',
+    description: 'Full interior cleaning to refresh your vehicle cabin.',
+    features: ['Complete vacuum', 'Dashboard & console wipe', 'Door panel cleaning', 'Glass cleaning', 'Air freshening'],
+    prices: { sedan: 120, suv: 160, commercial: 200 },
+    duration: '~1.5 hours'
+  },
+  {
+    name: 'Interior DEEP Cleaning',
+    description: 'Intensive interior restoration for heavily soiled vehicles.',
+    features: ['Steam cleaning', 'Stain extraction', 'Headliner cleaning', 'Vent cleaning', 'Full sanitation', 'Pet hair removal included', 'Deep carpet shampoo included'],
+    prices: { sedan: 200, suv: 240, commercial: 280 },
+    duration: '~2.5 hours'
+  },
+  {
+    name: 'Package Deal',
+    description: 'Interior Detail + Full Exterior - Our most popular choice!',
+    features: ['Everything in Interior Detail', 'Everything in Exterior Wash', 'Save vs. booking separately'],
+    prices: { sedan: 150, suv: 200, commercial: 250 },
+    duration: '~2.5 hours',
+    popular: true
+  },
+  {
+    name: 'Disaster Vehicle',
+    description: 'Complete restoration for vehicles needing serious attention.',
+    features: ['Deep Interior cleaning', 'Full Exterior detail', 'Headlight restoration included', 'Ozone odor treatment included', 'Pet hair removal included'],
+    prices: { sedan: 230, suv: 270, commercial: 310 },
+    duration: '~4 hours'
+  }
+];
+
+const addons = {
+  interior: [
+    { name: 'Ozone Odor Treatment', description: 'Eliminate smoke, pet, mold odors', prices: { sedan: 50, suv: 60, commercial: 75 } },
+    { name: 'Pet Hair Removal', description: 'Heavy-duty extraction', prices: { sedan: 35, suv: 45, commercial: 60 } },
+    { name: 'Leather Conditioning', description: 'Premium leather care & UV protection', prices: { sedan: 30, suv: 40, commercial: 50 } },
+    { name: 'Fabric Protection', description: 'Stain guard for cloth surfaces', prices: { sedan: 35, suv: 45, commercial: 55 } },
+    { name: 'Deep Carpet Shampoo', description: 'Hot water extraction cleaning', prices: { sedan: 40, suv: 50, commercial: 65 } }
+  ],
+  exterior: [
+    { name: 'Ceramic Spray Coating', description: '3-6 month paint protection', prices: { sedan: 75, suv: 95, commercial: 120 } },
+    { name: 'Paint Correction', description: 'Remove swirl marks & light scratches', prices: { sedan: 150, suv: 200, commercial: 250 } },
+    { name: 'Headlight Restoration', description: 'Restore foggy headlights (pair)', prices: { sedan: 40, suv: 40, commercial: 50 } },
+    { name: 'Engine Bay Cleaning', description: 'Degrease & dress engine compartment', prices: { sedan: 45, suv: 55, commercial: 70 } },
+    { name: 'Tire & Wheel Deep Clean', description: 'Brake dust removal & tire dressing', prices: { sedan: 25, suv: 30, commercial: 40 } },
+    { name: 'Trim Restoration', description: 'Revive faded black plastic trim', prices: { sedan: 30, suv: 40, commercial: 50 } },
+    { name: 'Rain-X Treatment', description: 'Hydrophobic window coating', prices: { sedan: 20, suv: 25, commercial: 30 } },
+    { name: 'Clay Bar Treatment', description: 'Remove bonded surface contaminants', prices: { sedan: 50, suv: 65, commercial: 80 } },
+    { name: 'Bug & Tar Removal', description: 'Targeted removal of bugs & road tar', prices: { sedan: 20, suv: 25, commercial: 35 } }
+  ]
+};
+---
+
+<Layout title="Services & Pricing - Showers Auto Detailing">
+  <TopHeader />
+
+  <main class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <section class="gradient-primary py-16 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Services & Pricing</h1>
+        <p class="text-xl text-orange-100 max-w-2xl mx-auto">
+          Transparent pricing with no hidden fees. Choose the service that fits your needs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Vehicle Type Legend -->
+    <section class="py-8 bg-white border-b">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-8 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🚗</span>
+            <span class="font-medium">Sedan / Coupe</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🚙</span>
+            <span class="font-medium">SUV / Truck</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🚐</span>
+            <span class="font-medium">Commercial</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Services</h2>
+
+        <div class="grid gap-6 max-w-4xl mx-auto">
+          {services.map((service) => (
+            <div class={`bg-white rounded-2xl shadow-lg overflow-hidden ${service.popular ? 'ring-2 ring-[#EB6C1D]' : ''}`}>
+              {service.popular && (
+                <div class="bg-[#EB6C1D] text-white text-center py-2 text-sm font-semibold">
+                  Most Popular - Best Value!
+                </div>
+              )}
+              <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{service.name}</h3>
+                    <p class="text-gray-600 mb-4">{service.description}</p>
+                    <ul class="space-y-1 text-sm text-gray-600">
+                      {service.features.map((feature) => (
+                        <li class="flex items-center gap-2">
+                          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <p class="text-sm text-gray-500 mt-3">Duration: {service.duration}</p>
+                  </div>
+
+                  <div class="flex-shrink-0 bg-gray-50 rounded-xl p-4 min-w-[200px]">
+                    <div class="text-sm font-medium text-gray-500 mb-3 text-center">Pricing</div>
+                    <div class="space-y-2">
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">🚗 Sedan</span>
+                        <span class="font-bold text-[#EB6C1D]">${service.prices.sedan}</span>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">🚙 SUV</span>
+                        <span class="font-bold text-[#EB6C1D]">${service.prices.suv}</span>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">🚐 Commercial</span>
+                        <span class="font-bold text-[#EB6C1D]">${service.prices.commercial}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="text-center mt-8">
+          <a
+            href="/#quote"
+            class="inline-block px-8 py-4 bg-[#EB6C1D] text-white rounded-full font-semibold text-lg hover:bg-[#D35E14] transition-colors"
+          >
+            Get Your Quote
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Addons Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Add-On Services</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Enhance your detailing package with these optional extras.
+            Some add-ons are already included in certain packages - check the service details above.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- Interior Addons -->
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span class="w-8 h-8 bg-[#FDE8D9] rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-[#EB6C1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </span>
+              Interior Add-Ons
+            </h3>
+            <div class="space-y-3">
+              {addons.interior.map((addon) => (
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <div class="flex justify-between items-start mb-1">
+                    <span class="font-medium text-gray-900">{addon.name}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mb-2">{addon.description}</p>
+                  <div class="flex gap-4 text-sm">
+                    <span class="text-[#EB6C1D] font-semibold">${addon.prices.sedan}</span>
+                    <span class="text-gray-400">|</span>
+                    <span class="text-[#EB6C1D] font-semibold">${addon.prices.suv}</span>
+                    <span class="text-gray-400">|</span>
+                    <span class="text-[#EB6C1D] font-semibold">${addon.prices.commercial}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Exterior Addons -->
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span class="w-8 h-8 bg-[#FDE8D9] rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-[#EB6C1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </span>
+              Exterior Add-Ons
+            </h3>
+            <div class="space-y-3">
+              {addons.exterior.map((addon) => (
+                <div class="bg-gray-50 rounded-lg p-4">
+                  <div class="flex justify-between items-start mb-1">
+                    <span class="font-medium text-gray-900">{addon.name}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 mb-2">{addon.description}</p>
+                  <div class="flex gap-4 text-sm">
+                    <span class="text-[#EB6C1D] font-semibold">${addon.prices.sedan}</span>
+                    <span class="text-gray-400">|</span>
+                    <span class="text-[#EB6C1D] font-semibold">${addon.prices.suv}</span>
+                    <span class="text-gray-400">|</span>
+                    <span class="text-[#EB6C1D] font-semibold">${addon.prices.commercial}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-8 text-sm text-gray-500">
+          <p>Prices shown: Sedan/Coupe | SUV/Truck | Commercial</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+          <details class="bg-white rounded-lg shadow-sm">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:text-[#EB6C1D]">
+              What's the difference between Interior Detail and DEEP Cleaning?
+            </summary>
+            <div class="px-6 pb-4 text-gray-600">
+              Interior Detail is our standard interior service - great for regular maintenance. Deep Cleaning is for vehicles that need extra attention: heavy stains, pet hair, odors, or vehicles that haven't been detailed in a long time. Deep Cleaning includes steam cleaning, stain extraction, and more intensive treatment.
+            </div>
+          </details>
+
+          <details class="bg-white rounded-lg shadow-sm">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:text-[#EB6C1D]">
+              Do you come to my location?
+            </summary>
+            <div class="px-6 pb-4 text-gray-600">
+              Yes! We're a mobile detailing service. We come to your home, office, or wherever your vehicle is located within our service area (San Bernardino County, Orange County, Los Angeles County, and Riverside County).
+            </div>
+          </details>
+
+          <details class="bg-white rounded-lg shadow-sm">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:text-[#EB6C1D]">
+              What do I need to provide?
+            </summary>
+            <div class="px-6 pb-4 text-gray-600">
+              Just access to a water source and electrical outlet if possible. We bring all our own equipment, products, and supplies. If water/power access is limited, let us know and we can make arrangements.
+            </div>
+          </details>
+
+          <details class="bg-white rounded-lg shadow-sm">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:text-[#EB6C1D]">
+              How long does detailing take?
+            </summary>
+            <div class="px-6 pb-4 text-gray-600">
+              Service times vary by package and vehicle size. Exterior services take about 1 hour, Interior Detail about 1.5 hours, and full packages 2.5-4 hours. We'll give you an accurate estimate when you book.
+            </div>
+          </details>
+
+          <details class="bg-white rounded-lg shadow-sm">
+            <summary class="px-6 py-4 cursor-pointer font-semibold text-gray-900 hover:text-[#EB6C1D]">
+              What payment methods do you accept?
+            </summary>
+            <div class="px-6 pb-4 text-gray-600">
+              We accept all major credit cards, debit cards, and cash. A 25% deposit is required to secure your booking, with the balance due upon completion.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-primary text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+        <p class="text-xl text-orange-100 mb-8">
+          Get an instant quote or give us a call to book your appointment.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/#quote"
+            class="px-8 py-4 bg-white text-[#EB6C1D] rounded-full font-semibold text-lg hover:bg-gray-100 transition-colors"
+          >
+            Get Quote
+          </a>
+          <a
+            href="tel:+14422295998"
+            class="px-8 py-4 bg-white/20 backdrop-blur-sm rounded-full font-semibold text-lg hover:bg-white/30 transition-colors"
+          >
+            Call Now
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <BottomNav />
+</Layout>

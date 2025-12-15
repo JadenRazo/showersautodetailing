@@ -1,0 +1,22 @@
+# Robots.txt for Showers Auto Detailing
+# https://showersautodetailing.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://showersautodetailing.com/sitemap-index.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Block admin and API routes
+Disallow: /api/
+Disallow: /admin/
+
+# Allow search engines to index all public content
+Allow: /services
+Allow: /gallery
+Allow: /reviews
+Allow: /about
+Allow: /contact

@@ -196,7 +196,7 @@ export default function QuoteCalculator() {
         </div>
         <h3 className="text-2xl font-bold text-gray-900 mb-2">Quote Request Sent!</h3>
         <p className="text-gray-600 mb-6">
-          We'll get back to you shortly with a detailed quote.
+          We'll get back to you shortly with a detailed quote. Please check your spam/junk folder if you don't see our email.
         </p>
         <button
           onClick={() => { setSubmitted(false); setShowContactForm(false); setEstimate(null); setShowAddons(false); setSelectedAddons([]); }}

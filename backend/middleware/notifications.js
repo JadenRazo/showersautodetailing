@@ -146,7 +146,7 @@ Your Request Details:
 - Estimated Price: $${data.estimatedPrice}
 
 If you have any questions, feel free to contact us:
-Phone: ${businessPhone}
+Phone: (442) 229-5998
 Email: ${businessEmail}
 
 We look forward to serving you!
@@ -171,7 +171,7 @@ Booking Details:
 - Deposit Paid: $${data.depositAmount}
 
 If you need to reschedule or have any questions, please contact us:
-Phone: ${businessPhone}
+Phone: (442) 229-5998
 Email: ${businessEmail}
 
 Thank you for choosing ${businessName}!

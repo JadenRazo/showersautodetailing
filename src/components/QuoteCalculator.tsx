@@ -101,7 +101,7 @@ export default function QuoteCalculator() {
         .reduce((sum, addon) => {
           const price = vehicleType === 'commercial' ? addon.commercial_price
             : vehicleType === 'suv' ? addon.suv_price : addon.sedan_price;
-          return sum + price;
+          return sum + parseFloat(String(price));
         }, 0);
       setAddonTotal(total);
     } else {
@@ -151,9 +151,10 @@ export default function QuoteCalculator() {
   };
 
   const getAddonPrice = (addon: Addon): number => {
-    if (!vehicleType) return addon.sedan_price;
-    return vehicleType === 'commercial' ? addon.commercial_price
+    const price = !vehicleType ? addon.sedan_price
+      : vehicleType === 'commercial' ? addon.commercial_price
       : vehicleType === 'suv' ? addon.suv_price : addon.sedan_price;
+    return parseFloat(String(price));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -4,12 +4,19 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
+  ogImage?: string;
 }
 
 const {
   title,
-  description = "Professional mobile auto detailing service. Book online and get instant quotes for car detailing, interior cleaning, and more."
+  description = "Professional mobile auto detailing service in Southern California. Book online for car detailing, interior cleaning, ceramic coating, and more. Serving San Bernardino, Orange, Los Angeles, and Riverside counties.",
+  noindex = false,
+  ogImage = '/images/og-image.jpg'
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://showersautodetail.com');
+const ogImageURL = new URL(ogImage, 'https://showersautodetail.com');
 ---
 
 <!doctype html>
@@ -19,17 +26,35 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:site_name" content="Showers Auto Detail" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Preconnect to external services -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://web.squarecdn.com" />
 
     <title>{title}</title>
   </head>

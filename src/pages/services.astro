@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TopHeader from '../components/TopHeader.astro';
+import FAQSchema from '../components/seo/FAQSchema.astro';
+import LocalBusinessSchema from '../components/seo/LocalBusinessSchema.astro';
 import BottomNav from '../components/BottomNav.astro';
 
 const services = [
@@ -42,6 +44,14 @@ const services = [
   }
 ];
 
+const faqs = [
+  { question: "What's the difference between Interior Detail and DEEP Cleaning?", answer: "Interior Detail is our standard interior service - great for regular maintenance. Deep Cleaning is for vehicles that need extra attention: heavy stains, pet hair, odors, or vehicles that have not been detailed in a long time. Deep Cleaning includes steam cleaning, stain extraction, and more intensive treatment." },
+  { question: "Do you come to my location?", answer: "Yes! We are a mobile detailing service. We come to your home, office, or wherever your vehicle is located within our service area (San Bernardino County, Orange County, Los Angeles County, and Riverside County)." },
+  { question: "What do I need to provide?", answer: "Just access to a water source and electrical outlet if possible. We bring all our own equipment, products, and supplies. If water/power access is limited, let us know and we can make arrangements." },
+  { question: "How long does detailing take?", answer: "Service times vary by package and vehicle size. Exterior services take about 1 hour, Interior Detail about 1.5 hours, and full packages 2.5-4 hours. We will give you an accurate estimate when you book." },
+  { question: "What payment methods do you accept?", answer: "We accept all major credit cards, debit cards, and cash. A 25% deposit is required to secure your booking, with the balance due upon completion." }
+];
+
 const addons = {
   interior: [
     { name: 'Ozone Odor Treatment', description: 'Eliminate smoke, pet, mold odors', prices: { sedan: 50, suv: 60, commercial: 75 } },
@@ -64,7 +74,9 @@ const addons = {
 };
 ---
 
-<Layout title="Services & Pricing - Showers Auto Detailing">
+<Layout title="Auto Detailing Services & Pricing - Showers Auto Detail">
+  <LocalBusinessSchema includeServices={true} />
+  <FAQSchema faqs={faqs} />
   <TopHeader />
 
   <main class="min-h-screen bg-gray-50">

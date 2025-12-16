@@ -1,0 +1,101 @@
+---
+interface Props {
+  includeServices?: boolean;
+  includeRating?: boolean;
+}
+
+const { includeServices = true, includeRating = true } = Astro.props;
+
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "@id": "https://showersautodetail.com/#business",
+  "name": "Showers Auto Detail",
+  "alternateName": "Showers Auto Detailing",
+  "description": "Professional mobile auto detailing service in Southern California. We bring the car wash to you with premium detailing, ceramic coating, and interior cleaning services.",
+  "url": "https://showersautodetail.com",
+  "telephone": "+1-442-229-5998",
+  "email": "contact@showersauto.com",
+  "logo": "https://showersautodetail.com/favicon.svg",
+  "image": "https://showersautodetail.com/images/og-image.jpg",
+  "priceRange": "$$",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Credit Card, Debit Card",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "County",
+      "name": "San Bernardino County",
+      "containedInPlace": { "@type": "State", "name": "California" }
+    },
+    {
+      "@type": "County",
+      "name": "Orange County",
+      "containedInPlace": { "@type": "State", "name": "California" }
+    },
+    {
+      "@type": "County",
+      "name": "Los Angeles County",
+      "containedInPlace": { "@type": "State", "name": "California" }
+    },
+    {
+      "@type": "County",
+      "name": "Riverside County",
+      "containedInPlace": { "@type": "State", "name": "California" }
+    }
+  ],
+  "sameAs": [
+    "https://www.yelp.com/biz/showers-auto-detailing-victorville"
+  ],
+  ...(includeServices && {
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Auto Detailing Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Basic Wash",
+            "description": "Exterior hand wash with tire and wheel cleaning"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Full Detail",
+            "description": "Complete interior and exterior detailing service"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ceramic Coating",
+            "description": "Premium ceramic paint protection"
+          }
+        }
+      ]
+    }
+  }),
+  ...(includeRating && {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "50",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  })
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />

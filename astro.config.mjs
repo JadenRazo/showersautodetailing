@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://showersautodetailing.com',
+  site: 'https://showersautodetail.com',
   vite: {
     plugins: [tailwindcss()]
   },
@@ -16,10 +16,7 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      customPages: [
-        'https://showersautodetailing.com/',
-        'https://showersautodetailing.com/services',
-      ],
+      filter: (page) => !page.includes('/pay') && !page.includes('/test-payment'),
     })
   ]
 });
